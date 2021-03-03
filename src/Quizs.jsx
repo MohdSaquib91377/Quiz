@@ -8,6 +8,7 @@ export default function Quizs() {
   const increaseIndex=()=>{
     setIndex(
       index+1)
+      setMaxSelect(1)
   }
     const Questions = [
         {
@@ -110,18 +111,26 @@ export default function Quizs() {
     const [select, setSelect] = useState("")
     const [color, setColor]=useState('')
     const [score, setScore]=useState(0)
-    const [leftquestion,setLeftQuestion]=useState(0)
+   const [maxselect,setMaxSelect]=useState(1)
+   
+  
     const selectOption=(option)=>{
-    setLeftQuestion(leftquestion+1)
-        if(Questions[index].correct==option){
-            setSelect(option)
-            setColor("green")
-            setScore(score+1)     
+        setMaxSelect(maxselect+1)
+        if(maxselect<=3){
+            if(Questions[index].correct==option){
+                setSelect(option)
+                setColor("green")
+                setScore(score+1)     
+            }
+            else{
+                setSelect(option)
+                setColor("red") 
+                setScore(score-0.25)
+            }
         }
+      
         else{
-            setSelect(option)
-            setColor("red") 
-            setScore(score-0.25)
+            alert("You have maximum 3 chance to give answer")
         }
     }
        
@@ -130,7 +139,7 @@ export default function Quizs() {
         return (
        
             <div className="quizs">
-                
+               
                 <h1>{Questions[index].title}</h1>
                 <div className="options">
                      <h4 onClick={()=>selectOption(Questions[index].op1)}
