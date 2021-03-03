@@ -1,0 +1,13 @@
+.User{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+}
+.submit__button{
+    margin-top: 1rem;
+    width: 100%;
+}
+.modal{
+ 
+    height: 30%;
+}
